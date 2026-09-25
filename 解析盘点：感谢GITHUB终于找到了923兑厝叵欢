@@ -1,0 +1,443 @@
+<h1> Mobile Article Aggregator Platform (MAP)</h1><br><br><hr><br>
+
+Mobile Article Aggregator Platform 是一个面向移动端内容聚合与分发场景的开源技术资源导航站。该项目定位于为开发者、技术研究人员以及内容运营团队提供结构化的移动端文章链接索引与快速检索能力，解决移动端技术文章分散、检索效率低下、域名迁移频繁导致链接失效等实际问题。
+
+项目本身不存储任何文章内容，仅作为外链元数据的索引层与展示层，通过静态化的资源列表与分类标签体系，帮助用户在海量移动端技术文档中快速定位目标资源。目标用户包括移动端开发工程师、全栈技术学习者、技术博客维护者以及企业内部知识库管理人员。
+
+<h2>功能概览</h2><br>
+
+<p><h3>海量链接索引管理</h3>：支持对超过 250 条移动端技术文章链接进行集中存储与分类展示，覆盖多种技术子领域。</p>
+
+<p><h3>静态化资源列表呈现</h3>：所有链接以纯 Markdown 形式维护于项目仓库中，无需数据库依赖，便于版本控制与协作编辑。</p>
+
+<p><h3>分类标签体系</h3>：根据文章主题、技术栈或访问热度对链接进行逻辑分组，降低用户筛选成本。</p>
+
+<p><h3>快速检索入口</h3>：提供基于文章 ID 或路径关键字的本地搜索功能，提升链接定位速度。</p>
+
+<p><h3>链接状态检测工具</h3>：集成可选的定时检测脚本，自动标记可能失效或响应异常的链接，保障资源列表的有效性。</p>
+
+<p><h3>移动端适配展示</h3>：前端模板针对手机和平板设备进行优化，确保在移动浏览器上获得良好的阅读与导航体验。</p>
+
+<p><h3>开源协作扩展机制</h3>：支持社区用户通过提交 Issue 或 Pull Request 的方式新增、更新或删除链接条目，保持资源列表的时效性。</p>
+
+<p><h3>轻量化部署能力</h3>：项目整体基于静态文件生成，可托管于任何支持 HTTP 服务的平台，包括 GitHub Pages、Cloudflare Pages 或自建 Nginx 服务器。</p>
+
+<h2>应用场景</h2><br>
+
+技术团队内部知识库建设：企业内部的技术团队可将本项目作为基础框架，整理团队内部积累的移动端技术文章链接，形成统一的知识索引入口，减少重复的文档查找工作。
+
+个人技术博客的友情链接扩展：独立技术博客作者可利用本项目的资源列表作为博客侧边栏的补充，为读者提供更多外部阅读资源，同时降低博客维护外链的复杂度。
+
+技术社区的内容聚合展示：技术社区运营方可基于本项目快速搭建文章推荐专区，将社区内的高质量技术帖按分类进行外链汇总，提升社区内容的曝光率与复用率。
+
+技术培训课程的参考资料索引：培训机构或技术讲师可将本项目作为课程参考资料库，将课程中涉及的外部延伸阅读链接统一整理到项目列表中，方便学员课后查阅。
+
+开源项目文档的关联资源导航：开源项目维护者可在项目文档中引用本项目的资源列表，为使用者提供相关的技术背景阅读材料，丰富项目的辅助信息生态。
+
+<h2>快速开始</h2><br>
+
+以下步骤将帮助您在本地环境快速部署并运行本项目的静态站点。
+
+# 1. 克隆项目仓库到本地
+git clone https://github.com/example/mobile-article-aggregator.git
+cd mobile-article-aggregator
+
+# 2. 安装项目依赖（基于 Node.js 环境）
+npm install
+
+# 3. 运行本地开发服务器，默认监听端口 3000
+npm run dev
+
+执行上述命令后，在浏览器中访问 `http://localhost:3000` 即可查看资源列表页面。如需构建生产环境静态文件，请执行 `npm run build`，生成的静态资源位于 `dist` 目录下。
+
+<h2>安装要求</h2><br>
+
+| 依赖项 | 必需版本 | 说明 |
+|--------|----------|------|
+| Node.js | 18.0 及以上 | 项目构建工具与开发服务器运行环境 |
+| npm | 8.0 及以上 | Node.js 包管理器，用于安装项目依赖 |
+| Git | 2.30 及以上 | 用于克隆仓库与版本管理 |
+| 现代浏览器 | Chrome 90+ / Firefox 88+ | 前端页面访问与调试支持 |
+| HTTP 服务器 | 任意静态文件服务 | 生产环境托管构建后的静态文件，如 Nginx、Caddy 或 Apache |
+| 可选：Shell 环境 | Bash 4.0+ | 运行链接状态检测脚本（位于 scripts/ 目录） |
+
+<h2>文档导航</h2><br>
+
+| 层面 | 目录 | 回答的问题 |
+|------|------|------------|
+| 用户入门 | docs/getting-started.md | 如何使用本项目的资源列表？如何通过分类标签快速找到所需文章？ |
+| 维护者指南 | docs/maintenance.md | 如何新增、修改或删除链接条目？链接格式校验规则是什么？ |
+| 开发贡献 | docs/contributing.md | 如何搭建开发环境？代码风格规范与提交信息格式要求有哪些？ |
+| 部署运维 | docs/deployment.md | 如何将站点部署到生产服务器？如何配置自定义域名与 HTTPS？ |
+
+<h2>资源列表</h2><br>
+
+<h3>移动端技术文章链接汇总</h3><br>
+
+以下列表收录了本批次（第 8/24 批，共300 个资源链接）的全部移动端文章外链。所有链接均按照用户提供的原始格式原样呈现，未做任何协议、域名或路径的改动。
+
+map.zgjssh.cn/Article/details30429155.SHtML<br>
+map.zgjssh.cn/Article/details99418962.SHtML<br>
+map.zgjssh.cn/Article/details15674268.SHtML<br>
+map.zgjssh.cn/Article/details89642096.SHtML<br>
+map.zgjssh.cn/Article/details53646020.SHtML<br>
+map.zgjssh.cn/Article/details87479176.SHtML<br>
+map.zgjssh.cn/Article/details60152592.SHtML<br>
+map.zgjssh.cn/Article/details26049093.SHtML<br>
+map.zgjssh.cn/Article/details23129276.SHtML<br>
+map.zgjssh.cn/Article/details48279764.SHtML<br>
+map.zgjssh.cn/Article/details00168575.SHtML<br>
+map.zgjssh.cn/Article/details97862351.SHtML<br>
+map.zgjssh.cn/Article/details74538840.SHtML<br>
+map.zgjssh.cn/Article/details00965213.SHtML<br>
+map.zgjssh.cn/Article/details74206838.SHtML<br>
+map.zgjssh.cn/Article/details88227458.SHtML<br>
+map.zgjssh.cn/Article/details65715000.SHtML<br>
+map.zgjssh.cn/Article/details03897565.SHtML<br>
+map.zgjssh.cn/Article/details26443209.SHtML<br>
+map.zgjssh.cn/Article/details69616402.SHtML<br>
+map.zgjssh.cn/Article/details63130423.SHtML<br>
+map.zgjssh.cn/Article/details29492709.SHtML<br>
+map.zgjssh.cn/Article/details71315961.SHtML<br>
+map.zgjssh.cn/Article/details02319184.SHtML<br>
+map.zgjssh.cn/Article/details58637213.SHtML<br>
+map.zgjssh.cn/Article/details53859769.SHtML<br>
+map.zgjssh.cn/Article/details11102783.SHtML<br>
+map.zgjssh.cn/Article/details03647344.SHtML<br>
+map.zgjssh.cn/Article/details98047848.SHtML<br>
+map.zgjssh.cn/Article/details03893010.SHtML<br>
+map.zgjssh.cn/Article/details67811791.SHtML<br>
+map.zgjssh.cn/Article/details87716441.SHtML<br>
+map.zgjssh.cn/Article/details79337199.SHtML<br>
+map.zgjssh.cn/Article/details00374392.SHtML<br>
+map.zgjssh.cn/Article/details56375045.SHtML<br>
+map.zgjssh.cn/Article/details47499083.SHtML<br>
+map.zgjssh.cn/Article/details52704749.SHtML<br>
+map.zgjssh.cn/Article/details26827271.SHtML<br>
+map.zgjssh.cn/Article/details53013123.SHtML<br>
+map.zgjssh.cn/Article/details37183413.SHtML<br>
+map.zgjssh.cn/Article/details56954345.SHtML<br>
+map.zgjssh.cn/Article/details20413312.SHtML<br>
+map.zgjssh.cn/Article/details00163264.SHtML<br>
+map.zgjssh.cn/Article/details90058008.SHtML<br>
+map.zgjssh.cn/Article/details60047830.SHtML<br>
+map.zgjssh.cn/Article/details18641231.SHtML<br>
+map.zgjssh.cn/Article/details45971903.SHtML<br>
+map.zgjssh.cn/Article/details19341578.SHtML<br>
+map.zgjssh.cn/Article/details15616731.SHtML<br>
+map.zgjssh.cn/Article/details54869741.SHtML<br>
+map.zgjssh.cn/Article/details44850109.SHtML<br>
+map.zgjssh.cn/Article/details12367242.SHtML<br>
+map.zgjssh.cn/Article/details82030020.SHtML<br>
+map.zgjssh.cn/Article/details59027722.SHtML<br>
+map.zgjssh.cn/Article/details19397976.SHtML<br>
+map.zgjssh.cn/Article/details40412088.SHtML<br>
+map.zgjssh.cn/Article/details24867339.SHtML<br>
+map.zgjssh.cn/Article/details24566780.SHtML<br>
+map.zgjssh.cn/Article/details99142826.SHtML<br>
+map.zgjssh.cn/Article/details87645244.SHtML<br>
+map.zgjssh.cn/Article/details64516490.SHtML<br>
+map.zgjssh.cn/Article/details29158952.SHtML<br>
+map.zgjssh.cn/Article/details49247852.SHtML<br>
+map.zgjssh.cn/Article/details11291538.SHtML<br>
+map.zgjssh.cn/Article/details16571530.SHtML<br>
+map.zgjssh.cn/Article/details03423199.SHtML<br>
+map.zgjssh.cn/Article/details44950803.SHtML<br>
+map.zgjssh.cn/Article/details93365289.SHtML<br>
+map.zgjssh.cn/Article/details10847504.SHtML<br>
+map.zgjssh.cn/Article/details30564513.SHtML<br>
+map.zgjssh.cn/Article/details54834765.SHtML<br>
+map.zgjssh.cn/Article/details96569622.SHtML<br>
+map.zgjssh.cn/Article/details56430923.SHtML<br>
+map.zgjssh.cn/Article/details07067616.SHtML<br>
+map.zgjssh.cn/Article/details30561352.SHtML<br>
+map.zgjssh.cn/Article/details48999211.SHtML<br>
+map.zgjssh.cn/Article/details59695682.SHtML<br>
+map.zgjssh.cn/Article/details44682830.SHtML<br>
+map.zgjssh.cn/Article/details50210160.SHtML<br>
+map.zgjssh.cn/Article/details08807630.SHtML<br>
+map.zgjssh.cn/Article/details12057432.SHtML<br>
+map.zgjssh.cn/Article/details10516229.SHtML<br>
+map.zgjssh.cn/Article/details64168812.SHtML<br>
+map.zgjssh.cn/Article/details48319054.SHtML<br>
+map.zgjssh.cn/Article/details45785299.SHtML<br>
+map.zgjssh.cn/Article/details59318541.SHtML<br>
+map.zgjssh.cn/Article/details06159596.SHtML<br>
+map.zgjssh.cn/Article/details60125026.SHtML<br>
+map.zgjssh.cn/Article/details37274020.SHtML<br>
+map.zgjssh.cn/Article/details27105173.SHtML<br>
+map.zgjssh.cn/Article/details26402555.SHtML<br>
+map.zgjssh.cn/Article/details24563458.SHtML<br>
+map.zgjssh.cn/Article/details04718087.SHtML<br>
+map.zgjssh.cn/Article/details85323466.SHtML<br>
+map.zgjssh.cn/Article/details88027954.SHtML<br>
+map.zgjssh.cn/Article/details89431470.SHtML<br>
+map.zgjssh.cn/Article/details82654523.SHtML<br>
+map.zgjssh.cn/Article/details12351053.SHtML<br>
+map.zgjssh.cn/Article/details82480055.SHtML<br>
+map.zgjssh.cn/Article/details92395565.SHtML<br>
+map.zgjssh.cn/Article/details01305154.SHtML<br>
+map.zgjssh.cn/Article/details93467901.SHtML<br>
+map.zgjssh.cn/Article/details04572388.SHtML<br>
+map.zgjssh.cn/Article/details92450249.SHtML<br>
+map.zgjssh.cn/Article/details04202082.SHtML<br>
+map.zgjssh.cn/Article/details16468918.SHtML<br>
+map.zgjssh.cn/Article/details26882745.SHtML<br>
+map.zgjssh.cn/Article/details23815205.SHtML<br>
+map.zgjssh.cn/Article/details92797009.SHtML<br>
+map.zgjssh.cn/Article/details67508745.SHtML<br>
+map.zgjssh.cn/Article/details97427461.SHtML<br>
+map.zgjssh.cn/Article/details43735806.SHtML<br>
+map.zgjssh.cn/Article/details38990608.SHtML<br>
+map.zgjssh.cn/Article/details30027445.SHtML<br>
+map.zgjssh.cn/Article/details76009342.SHtML<br>
+map.zgjssh.cn/Article/details29150995.SHtML<br>
+map.zgjssh.cn/Article/details63416748.SHtML<br>
+map.zgjssh.cn/Article/details74614698.SHtML<br>
+map.zgjssh.cn/Article/details81858450.SHtML<br>
+map.zgjssh.cn/Article/details29317847.SHtML<br>
+map.zgjssh.cn/Article/details27267297.SHtML<br>
+map.zgjssh.cn/Article/details78903703.SHtML<br>
+map.zgjssh.cn/Article/details60791198.SHtML<br>
+map.zgjssh.cn/Article/details56164096.SHtML<br>
+map.zgjssh.cn/Article/details76126103.SHtML<br>
+map.zgjssh.cn/Article/details37497958.SHtML<br>
+map.zgjssh.cn/Article/details11751208.SHtML<br>
+map.zgjssh.cn/Article/details41432702.SHtML<br>
+map.zgjssh.cn/Article/details30489996.SHtML<br>
+map.zgjssh.cn/Article/details55380975.SHtML<br>
+map.zgjssh.cn/Article/details94180227.SHtML<br>
+map.zgjssh.cn/Article/details26572879.SHtML<br>
+map.zgjssh.cn/Article/details92086183.SHtML<br>
+map.zgjssh.cn/Article/details80106724.SHtML<br>
+map.zgjssh.cn/Article/details97280514.SHtML<br>
+map.zgjssh.cn/Article/details15237055.SHtML<br>
+map.zgjssh.cn/Article/details11309357.SHtML<br>
+map.zgjssh.cn/Article/details34820336.SHtML<br>
+map.zgjssh.cn/Article/details02008003.SHtML<br>
+map.zgjssh.cn/Article/details63175955.SHtML<br>
+map.zgjssh.cn/Article/details92776969.SHtML<br>
+map.zgjssh.cn/Article/details21578048.SHtML<br>
+map.zgjssh.cn/Article/details14606202.SHtML<br>
+map.zgjssh.cn/Article/details67465841.SHtML<br>
+map.zgjssh.cn/Article/details29386074.SHtML<br>
+map.zgjssh.cn/Article/details42028009.SHtML<br>
+map.zgjssh.cn/Article/details34439746.SHtML<br>
+map.zgjssh.cn/Article/details72042570.SHtML<br>
+map.zgjssh.cn/Article/details48740007.SHtML<br>
+map.zgjssh.cn/Article/details62704567.SHtML<br>
+map.zgjssh.cn/Article/details25913589.SHtML<br>
+map.zgjssh.cn/Article/details48106053.SHtML<br>
+map.zgjssh.cn/Article/details26063954.SHtML<br>
+map.zgjssh.cn/Article/details52457648.SHtML<br>
+map.zgjssh.cn/Article/details89788785.SHtML<br>
+map.zgjssh.cn/Article/details75727276.SHtML<br>
+map.zgjssh.cn/Article/details25354079.SHtML<br>
+map.zgjssh.cn/Article/details77232083.SHtML<br>
+map.zgjssh.cn/Article/details05024093.SHtML<br>
+map.zgjssh.cn/Article/details07564492.SHtML<br>
+map.zgjssh.cn/Article/details66147698.SHtML<br>
+map.zgjssh.cn/Article/details33764021.SHtML<br>
+map.zgjssh.cn/Article/details76377137.SHtML<br>
+map.zgjssh.cn/Article/details81023485.SHtML<br>
+map.zgjssh.cn/Article/details77201441.SHtML<br>
+map.zgjssh.cn/Article/details19788887.SHtML<br>
+map.zgjssh.cn/Article/details13722898.SHtML<br>
+map.zgjssh.cn/Article/details60512498.SHtML<br>
+map.zgjssh.cn/Article/details77466385.SHtML<br>
+map.zgjssh.cn/Article/details61949576.SHtML<br>
+map.zgjssh.cn/Article/details67587193.SHtML<br>
+map.zgjssh.cn/Article/details65083997.SHtML<br>
+map.zgjssh.cn/Article/details63178383.SHtML<br>
+map.zgjssh.cn/Article/details12367503.SHtML<br>
+map.zgjssh.cn/Article/details39325208.SHtML<br>
+map.zgjssh.cn/Article/details34510956.SHtML<br>
+map.zgjssh.cn/Article/details55326747.SHtML<br>
+map.zgjssh.cn/Article/details78303868.SHtML<br>
+map.zgjssh.cn/Article/details87118761.SHtML<br>
+map.zgjssh.cn/Article/details31134882.SHtML<br>
+map.zgjssh.cn/Article/details15070248.SHtML<br>
+map.zgjssh.cn/Article/details67254950.SHtML<br>
+map.zgjssh.cn/Article/details61739866.SHtML<br>
+map.zgjssh.cn/Article/details60434601.SHtML<br>
+map.zgjssh.cn/Article/details75610532.SHtML<br>
+map.zgjssh.cn/Article/details85778618.SHtML<br>
+map.zgjssh.cn/Article/details13114912.SHtML<br>
+map.zgjssh.cn/Article/details70782221.SHtML<br>
+map.zgjssh.cn/Article/details21334499.SHtML<br>
+map.zgjssh.cn/Article/details42193031.SHtML<br>
+map.zgjssh.cn/Article/details88065968.SHtML<br>
+map.zgjssh.cn/Article/details85568034.SHtML<br>
+map.zgjssh.cn/Article/details67592183.SHtML<br>
+map.zgjssh.cn/Article/details63822661.SHtML<br>
+map.zgjssh.cn/Article/details09912602.SHtML<br>
+map.zgjssh.cn/Article/details12924538.SHtML<br>
+map.zgjssh.cn/Article/details77319742.SHtML<br>
+map.zgjssh.cn/Article/details08698009.SHtML<br>
+map.zgjssh.cn/Article/details99875907.SHtML<br>
+map.zgjssh.cn/Article/details47855709.SHtML<br>
+map.zgjssh.cn/Article/details89431167.SHtML<br>
+map.zgjssh.cn/Article/details97401715.SHtML<br>
+map.zgjssh.cn/Article/details03742476.SHtML<br>
+map.zgjssh.cn/Article/details90572939.SHtML<br>
+map.zgjssh.cn/Article/details19557407.SHtML<br>
+map.zgjssh.cn/Article/details38649734.SHtML<br>
+map.zgjssh.cn/Article/details07757006.SHtML<br>
+map.zgjssh.cn/Article/details78954038.SHtML<br>
+map.zgjssh.cn/Article/details32883658.SHtML<br>
+map.zgjssh.cn/Article/details83054588.SHtML<br>
+map.zgjssh.cn/Article/details99617619.SHtML<br>
+map.zgjssh.cn/Article/details10427729.SHtML<br>
+map.zgjssh.cn/Article/details02122490.SHtML<br>
+map.zgjssh.cn/Article/details75463725.SHtML<br>
+map.zgjssh.cn/Article/details66427340.SHtML<br>
+map.zgjssh.cn/Article/details50015912.SHtML<br>
+map.zgjssh.cn/Article/details81402631.SHtML<br>
+map.zgjssh.cn/Article/details94902854.SHtML<br>
+map.zgjssh.cn/Article/details98664448.SHtML<br>
+map.zgjssh.cn/Article/details70537963.SHtML<br>
+map.zgjssh.cn/Article/details19029709.SHtML<br>
+map.zgjssh.cn/Article/details08438746.SHtML<br>
+map.zgjssh.cn/Article/details42409272.SHtML<br>
+map.zgjssh.cn/Article/details30218519.SHtML<br>
+map.zgjssh.cn/Article/details06244329.SHtML<br>
+map.zgjssh.cn/Article/details32002882.SHtML<br>
+map.zgjssh.cn/Article/details54643466.SHtML<br>
+map.zgjssh.cn/Article/details44567140.SHtML<br>
+map.zgjssh.cn/Article/details01620546.SHtML<br>
+map.zgjssh.cn/Article/details61010979.SHtML<br>
+map.zgjssh.cn/Article/details75283358.SHtML<br>
+map.zgjssh.cn/Article/details51781384.SHtML<br>
+map.zgjssh.cn/Article/details17900285.SHtML<br>
+map.zgjssh.cn/Article/details96640531.SHtML<br>
+map.zgjssh.cn/Article/details21169071.SHtML<br>
+map.zgjssh.cn/Article/details61048330.SHtML<br>
+map.zgjssh.cn/Article/details91564869.SHtML<br>
+map.zgjssh.cn/Article/details97300357.SHtML<br>
+map.zgjssh.cn/Article/details50516749.SHtML<br>
+map.zgjssh.cn/Article/details94440024.SHtML<br>
+map.zgjssh.cn/Article/details89472724.SHtML<br>
+map.zgjssh.cn/Article/details68191643.SHtML<br>
+map.zgjssh.cn/Article/details73898766.SHtML<br>
+map.zgjssh.cn/Article/details03879067.SHtML<br>
+map.zgjssh.cn/Article/details83326972.SHtML<br>
+map.zgjssh.cn/Article/details84930072.SHtML<br>
+map.zgjssh.cn/Article/details42517217.SHtML<br>
+map.zgjssh.cn/Article/details58912277.SHtML<br>
+map.zgjssh.cn/Article/details53744791.SHtML<br>
+map.zgjssh.cn/Article/details67023222.SHtML<br>
+map.zgjssh.cn/Article/details78547809.SHtML<br>
+map.zgjssh.cn/Article/details45422139.SHtML<br>
+map.zgjssh.cn/Article/details23790508.SHtML<br>
+map.zgjssh.cn/Article/details04825560.SHtML<br>
+map.zgjssh.cn/Article/details92923122.SHtML<br>
+map.zgjssh.cn/Article/details38006730.SHtML<br>
+map.zgjssh.cn/Article/details93538205.SHtML<br>
+map.zgjssh.cn/Article/details86468592.SHtML<br>
+map.zgjssh.cn/Article/details69313399.SHtML<br>
+map.zgjssh.cn/Article/details07210253.SHtML<br>
+map.zgjssh.cn/Article/details22939942.SHtML<br>
+map.zgjssh.cn/Article/details40396731.SHtML<br>
+map.zgjssh.cn/Article/details10066439.SHtML<br>
+map.zgjssh.cn/Article/details68615333.SHtML<br>
+map.zgjssh.cn/Article/details16509309.SHtML<br>
+map.zgjssh.cn/Article/details56108298.SHtML<br>
+map.zgjssh.cn/Article/details29812897.SHtML<br>
+map.zgjssh.cn/Article/details12226795.SHtML<br>
+map.zgjssh.cn/Article/details61581815.SHtML<br>
+map.zgjssh.cn/Article/details65100853.SHtML<br>
+map.zgjssh.cn/Article/details08046897.SHtML<br>
+map.zgjssh.cn/Article/details48157165.SHtML<br>
+map.zgjssh.cn/Article/details63012186.SHtML<br>
+map.zgjssh.cn/Article/details90817916.SHtML<br>
+map.zgjssh.cn/Article/details85380634.SHtML<br>
+map.zgjssh.cn/Article/details28432038.SHtML<br>
+map.zgjssh.cn/Article/details50551300.SHtML<br>
+map.zgjssh.cn/Article/details33737107.SHtML<br>
+map.zgjssh.cn/Article/details19469862.SHtML<br>
+map.zgjssh.cn/Article/details16445708.SHtML<br>
+map.zgjssh.cn/Article/details97140804.SHtML<br>
+map.zgjssh.cn/Article/details15621722.SHtML<br>
+map.zgjssh.cn/Article/details31661021.SHtML<br>
+map.zgjssh.cn/Article/details82033159.SHtML<br>
+map.zgjssh.cn/Article/details58726288.SHtML<br>
+map.zgjssh.cn/Article/details70282254.SHtML<br>
+map.zgjssh.cn/Article/details74497102.SHtML<br>
+map.zgjssh.cn/Article/details52405502.SHtML<br>
+map.zgjssh.cn/Article/details78641727.SHtML<br>
+map.zgjssh.cn/Article/details06854834.SHtML<br>
+map.zgjssh.cn/Article/details84397851.SHtML<br>
+map.zgjssh.cn/Article/details25321068.SHtML<br>
+map.zgjssh.cn/Article/details12357592.SHtML<br>
+map.zgjssh.cn/Article/details90876598.SHtML<br>
+map.zgjssh.cn/Article/details59185619.SHtML<br>
+map.zgjssh.cn/Article/details25249522.SHtML<br>
+map.zgjssh.cn/Article/details38003135.SHtML<br>
+map.zgjssh.cn/Article/details24247113.SHtML<br>
+map.zgjssh.cn/Article/details97890970.SHtML<br>
+
+<h2>项目结构</h2><br>
+
+项目目录采用模块化分层设计，便于维护与扩展。各子目录职责清晰，核心资源列表与前端展示逻辑分离。
+
+
+mobile-article-aggregator/
+├── public/                          # 静态资源目录，无需构建直接复制
+│   ├── favicon.ico                  # 站点图标文件
+│   └── robots.txt                   # 搜索引擎爬虫规则，屏蔽非生产环境路径
+├── src/                             # 源代码主目录
+│   ├── assets/                      # 前端资源文件（图片、字体、全局样式）
+│   │   ├── images/                  # 项目用到的矢量图与位图素材
+│   │   └── styles/                  # 全局基础样式与 CSS 变量定义
+│   ├── components/                  # 可复用的 UI 组件
+│   │   ├── LinkList.vue             # 链接列表核心渲染组件，支持分页与过滤
+│   │   ├── SearchBar.vue            # 关键字搜索输入组件
+│   │   └── CategoryFilter.vue       # 分类标签筛选组件
+│   ├── data/                        # 数据层，存放静态链接资源列表
+│   │   ├── links.json               # 主链接索引文件，包含全部 250 条记录
+│   │   └── categories.json          # 分类映射表，定义标签与链接 ID 的对应关系
+│   ├── layouts/                     # 页面布局模板
+│   │   ├── default.vue              # 默认两栏布局（侧边栏 + 主内容区）
+│   │   └── full-width.vue           # 全宽布局，用于搜索与统计页面
+│   ├── pages/                       # 路由页面入口
+│   │   ├── index.vue                # 首页，展示全部资源列表与分类概览
+│   │   ├── about.vue                # 项目介绍与使用说明页面
+│   │   └── stats.vue                # 链接统计信息页面（总数、分类分布）
+│   ├── utils/                       # 工具函数库
+│   │   ├── validator.js             # 链接格式校验与规范化工具
+│   │   └── filter.js                # 数组过滤与排序辅助函数
+│   └── main.js                      # 应用入口文件，初始化 Vue 实例与插件
+├── scripts/                         # 运维与辅助脚本
+│   ├── check-links.sh               # 批量检测链接可用性的 Bash 脚本
+│   └── generate-sitemap.js          # 生成站点地图 XML 文件的 Node 脚本
+├── tests/                           # 单元测试与集成测试
+│   ├── unit/                        # 组件与函数的单元测试用例
+│   └── e2e/                         # 端到端测试脚本（基于 Playwright）
+├── .gitignore                       # Git 版本忽略规则文件
+├── package.json                     # Node.js 项目依赖与脚本定义
+├── README.md                        # 项目说明文档（本文件）
+├── LICENSE                          # MIT 许可证全文
+└── vite.config.js                   # Vite 构建工具配置文件
+
+
+<h2> 贡献指南</h2><br>
+
+我们欢迎社区开发者以多种形式参与本项目的维护与改进。所有贡献需遵守项目行为准则，并按照以下流程操作。
+
+第一步：查阅现有 Issue 与 Pull Request。在提交新贡献之前，请先浏览 GitHub 上的现有议题，确认无人正在处理相同问题或功能请求，避免重复劳动。
+
+第二步：Fork 项目并创建功能分支。将本仓库 Fork 至个人账号下，然后基于 `main` 分支创建一个新的分支，分支命名建议采用 `feature/功能描述` 或 `fix/问题简述` 的格式。
+
+第三步：完成代码或文档修改。请遵循项目既定的代码风格（ESLint 配置）与提交信息规范（使用 Conventional Commits 格式）。若涉及链接列表的增删，请同步更新 `src/data/links.json` 中的对应条目。
+
+第四步：编写或更新测试用例。对于新增的功能或修复的缺陷，请在 `tests/` 目录下补充相应的单元测试或端到端测试，确保代码覆盖率不下降。
+
+第五步：提交 Pull Request。推送本地分支到远程仓库后，向本项目的 `main` 分支发起 Pull Request，并在描述中清晰说明修改内容、动机以及相关 Issue 编号。项目维护者会在三个工作日内进行审阅。
+
+<h2>常见问题</h2><br>
+
+问：如何快速判断某条链接是否仍然有效？
+
+答：项目根目录下的 `scripts/check
+
+> 外链数量: 350 | 生成时间:2026-09-2603:27:19
